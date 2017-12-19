@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sx.ddk.dao.UserDao">
+  
+  <sql id="Base_Column_List">
+    uid, username, password, role
+  </sql>
+  
+  <select id="getRole" parameterType="String" resultType="String">
+  	select name from user u left join role r on u.role=r.rid where username=#{username}
+  </select>
+  
+  <select id="getUserByUserName" parameterType="String" resultType="sx.ddk.entity.User">
+  	select 
+  	<include refid="Base_Column_List"/>
+  	from user where username=#{username}
+  </select>
+  
+</mapper>
